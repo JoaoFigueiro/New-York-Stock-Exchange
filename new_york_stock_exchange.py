@@ -6,6 +6,10 @@ try:
     nyse = xml.etree.ElementTree.parse(xml_file).getroot()
 except FileNotFoundError: 
     print('File not Found!')
+    exit(1)
+except xml.etree.ElementTree.ParseError:
+    print("Stock data file contains invalid data")
+    exit(2)
 
 key_names = ["COMPANY", "LAST", "CHANGE", "MIN", "MAX"]
 key_widths = [50, 10, 10, 10, 10]
